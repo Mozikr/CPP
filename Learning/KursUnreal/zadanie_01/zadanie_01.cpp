@@ -4,12 +4,15 @@ using namespace std;
 
 //Napisz program, który oblicza silnię podanej przez użytkownika liczby całkowitej.
 
-int Silnia(int n)
+#define uLONG unsigned long long
+
+uLONG Silnia(uLONG n)
 {
 
-    int sum = 1;
+    uLONG sum = 1;
 
-    for (int i = 1; i <= n; ++i) {
+    for (uLONG i = 1; i <= n; ++i) 
+    {
         sum *= i;
     }
     return sum;
@@ -17,12 +20,12 @@ int Silnia(int n)
 
 int main()
 {
-    int x;
+    uLONG x;
     cout << "Podaj liczbe do stworzenia silni: ";
     cin >> x;
 
     cout << "Twoja silnia to: " << Silnia(x);
 
-    
+    return 0;
 }
 
