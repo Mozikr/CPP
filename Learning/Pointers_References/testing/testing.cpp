@@ -14,5 +14,6 @@ int main()
     // & - operator adresu, zwraca adres zmiennej
     // * - operator wysłuskania, zwraca zmienną, na którą
     // wskazuje wskaźnik
+    //testowanie
 }
 
