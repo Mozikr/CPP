@@ -1,20 +1,42 @@
-﻿// zadanie_01.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
+﻿#include <iostream>
 
-#include <iostream>
+using namespace std;
+// Napisz funkcję która przyjmuje dwie zmienne typu int przez wskaznik i zamienia je miejscami.
+void MySwapPointers(int* a, int*b) //wkaznik
+{
+	if (a && b) 
+	{
+		int temp = *a; //operujemy na adresach, wyłuskując mamy dostep do oryginalnych zmiennych bo mamy ich adresy
+		*a = *b;	//wyłuskiwanie
+		*b = temp;
+	}
+}
+
+void MySwapRef(int& a, int& b)
+{
+	if (a && b) 
+	{
+		int temp = a;
+		a = b;
+		b = temp;
+	}
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int A = 10;
+	int B = 15;
+
+	int C = 200;
+	int D = 400;
+
+	MySwapPointers(&A, &B);
+
+	MySwapRef(C, D);
+
+	cout << A << " " << B;
+	cout << "\n";
+	cout << C << " " << D;
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
-
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
