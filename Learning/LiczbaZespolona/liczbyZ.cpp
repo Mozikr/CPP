@@ -1,7 +1,15 @@
 #include <iostream>
 
 using namespace std;
-
+/*
+● Napisz klasę reprezentującą liczbę zespoloną
+● Klasa powinna zawierać:
+    ○ Konstruktory: domyślny, parametryczny i kopiujący
+    ○ Destruktor
+    ○ Przeładowane operatory: +, -, *, /, =
+    ○ metodę Print() służącą do wyświetlania liczby
+● W funkcji main() przeprowadź testy zaimplementowanych operacji
+*/
 
 class ComplexNumber {
 private:
@@ -9,15 +17,12 @@ private:
     double imaginary;
 
 public:
-    // Konstruktory
     ComplexNumber() : real(0), imaginary(0) {}
     ComplexNumber(double real, double imaginary) : real(real), imaginary(imaginary) {}
     ComplexNumber(const ComplexNumber& other) : real(other.real), imaginary(other.imaginary) {}
 
-    // Destruktor
     ~ComplexNumber() {}
 
-    // Przeładowane operatory
     ComplexNumber operator+(const ComplexNumber& other) const {
         return ComplexNumber(real + other.real, imaginary + other.imaginary);
     }
@@ -28,7 +33,7 @@ public:
 
     ComplexNumber operator*(const ComplexNumber& other) const {
         return ComplexNumber((real * other.real) - (imaginary * other.imaginary),
-                             (real * other.imaginary) + (imaginary * other.real));
+            (real * other.imaginary) + (imaginary * other.real));
     }
 
     ComplexNumber operator/(const ComplexNumber& other) const {
@@ -46,18 +51,21 @@ public:
         return *this;
     }
 
-    // Metoda Print()
     void Print() const {
-        if (imaginary >= 0) {
+        if (imaginary == 0) {
+            cout << real << endl;
+        }
+        else if (imaginary > 0) {
             cout << real << " + " << imaginary << "i" << endl;
-        } else {
+        }
+        else {
             cout << real << " - " << -imaginary << "i" << endl;
         }
     }
+
 };
 
 int main() {
-    // Testowanie operacji na liczbach zespolonych
     ComplexNumber num1(3, 4);
     ComplexNumber num2(1, -2);
     ComplexNumber result;
