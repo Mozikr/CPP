@@ -2,9 +2,9 @@
 
 using namespace std;
 // Napisz funkcję która przyjmuje dwie zmienne typu int przez wskaznik i zamienia je miejscami.
-void MySwapPointers(int* a, int*b) //wkaznik
+void MySwapPointers(int* a, int* b) //wkaznik
 {
-	if (a && b) 
+	if (a && b)
 	{
 		int temp = *a; //operujemy na adresach, wyłuskując mamy dostep do oryginalnych zmiennych bo mamy ich adresy
 		*a = *b;	//wyłuskiwanie
@@ -14,7 +14,7 @@ void MySwapPointers(int* a, int*b) //wkaznik
 
 void MySwapRef(int& a, int& b)
 {
-	if (a && b) 
+	if (a && b)
 	{
 		int temp = a;
 		a = b;
