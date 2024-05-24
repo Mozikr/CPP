@@ -9,7 +9,6 @@ void AddToArray(int* tab, int size, int number)
     for (int i = 0; i < size; ++i)
     {
         tab[i] += number;
-
     }
 }
 
