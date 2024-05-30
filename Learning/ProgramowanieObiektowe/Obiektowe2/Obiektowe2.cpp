@@ -50,14 +50,15 @@ public:
     }
 };
 
-class Derived : public Base
+class Derived final: public Base
 {
 public:
-    void Run()
+    void Run() override
     {
         cout << "Derived class is running" << endl;
     }
 };
+
 
 
 
