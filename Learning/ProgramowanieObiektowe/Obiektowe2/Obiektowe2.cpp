@@ -17,8 +17,6 @@ public:
 protected:
     int m_age;
 };
-
-
 class Student : public Person
 {
 public:
@@ -42,14 +40,18 @@ protected:
     int m_indexNumber;
 };
 
+
+
 int main()
 {
-    Student* student = new Student(20, 9001);
+    //Student* student = new Student(20, 9001);
     /*Deklaruje wskaźnik student typu Student* .
     Dynamicznie alokuje pamięć dla obiektu Student na stercie.
     Inicjalizuje obiekt Student za pomocą konstruktora z argumentami(20, 2121).
     Przypisuje adres nowo utworzonego obiektu Student do wskaźnika student.*/
 
-    cout << "Age: " << student->GetAge() << endl << "Index number: " << student->GetIndexNumber();
+   // cout << "Age: " << student->GetAge() << endl << "Index number: " << student->GetIndexNumber();
+
+
 }
 
