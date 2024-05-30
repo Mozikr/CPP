@@ -44,6 +44,15 @@ protected:
 class Base
 {
 public:
+    Base()
+    {
+        cout << "Base contructor" << endl;
+    }
+    virtual ~Base()
+    {
+        cout << "Base destructor" << endl;
+    }
+
     virtual void Run()
     {
         cout << "Base class is running" << endl;
@@ -53,12 +62,19 @@ public:
 class Derived final: public Base
 {
 public:
+    Derived()
+    {
+        cout << "Derived contructor" << endl;
+    }
+    ~Derived()
+    {
+        cout << "Derived destructor" << endl;
+    }
     void Run() override
     {
         cout << "Derived class is running" << endl;
     }
 };
-
 
 
 
@@ -72,10 +88,10 @@ int main()
 
    // cout << "Age: " << student->GetAge() << endl << "Index number: " << student->GetIndexNumber();
 
-    Base* derived = new Derived();
+    Base* ptr = new Derived();
 
-    derived->Run();
+    
 
-    delete derived;
+    delete ptr;
 }
 
