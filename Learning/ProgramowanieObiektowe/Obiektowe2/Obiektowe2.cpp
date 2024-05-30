@@ -48,7 +48,7 @@ public:
     {
         cout << "Base contructor" << endl;
     }
-    virtual ~Base()
+    ~Base()
     {
         cout << "Base destructor" << endl;
     }
