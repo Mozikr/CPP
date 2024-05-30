@@ -40,6 +40,25 @@ protected:
     int m_indexNumber;
 };
 
+//metody wirtualne
+class Base
+{
+public:
+    virtual void Run()
+    {
+        cout << "Base class is running" << endl;
+    }
+};
+
+class Derived : public Base
+{
+public:
+    void Run()
+    {
+        cout << "Derived class is running" << endl;
+    }
+};
+
 
 
 int main()
@@ -52,6 +71,10 @@ int main()
 
    // cout << "Age: " << student->GetAge() << endl << "Index number: " << student->GetIndexNumber();
 
+    Base* derived = new Derived();
 
+    derived->Run();
+
+    delete derived;
 }
 
