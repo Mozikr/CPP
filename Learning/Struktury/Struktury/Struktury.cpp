@@ -15,7 +15,14 @@ Point MovePoint(Point point, Point vector)
 	return result;
 }
 
-enum Animal
+enum Animal : char
+{
+	Cat,
+	Dog,
+	Lion,
+};
+
+enum class Mammal
 {
 	Cat,
 	Dog,
@@ -31,5 +38,8 @@ int main()
 	Point result = MovePoint(p, Point{ 5,5 });
 
 	cout << result.x << " " << result.y << endl;*/
+
+	Animal animal = Cat;
+	cout << sizeof(Cat);
 	return 0;
 }
