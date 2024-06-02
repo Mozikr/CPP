@@ -32,7 +32,6 @@ int main()
         delete[] tab[i];
     }delete[] tab;
 }// zwolnienie pamieci zmiennej k
-//testing
 
 
 
