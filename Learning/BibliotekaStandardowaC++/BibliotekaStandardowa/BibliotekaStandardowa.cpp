@@ -46,10 +46,31 @@ int main()
         ++it;
     }
 
+    //foreach
+    for (auto& number : numbers)
+    {
+        cout << number << endl;
+    }
+
     cout << endl;
     cout << numbers.size() << " " << numbers.capacity() << endl; //size - elementy, 
     //capacity - Zwraca maksymalną liczbę elementów jaką 
     //może pomieścić kontener bez wykonywania realokacji pamięci.
     numbers.shrink_to_fit(); // zmniejsza jego capacity(maksymalną liczbę elementów)
     //przydatne jak wiemy ze vector nie bedzie zmienial swoich wielkosci
+
+    //usuwanie
+    vector<int>::iterator it2 = numbers.begin();
+    while (it2 != numbers.end())
+    {
+        if (*it2 == 10)
+        {
+            it2 = numbers.erase(it2);
+        }
+        else {
+            cout << *it2 << endl;
+            ++it2;
+        }
+    }
+    return 0;
 }
