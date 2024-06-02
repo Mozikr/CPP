@@ -27,8 +27,21 @@ int main()
 
     cout << MAP[125] << endl;
     cout << MAP.at(123) << endl;
-    cout << MAP.find(234)->second << endl;
+    //cout << MAP.find(234)->second << endl;
 
+    //sprawdzenie czy istanieje
+    if (MAP.find(234) != MAP.end())
+    {
+        //code
+    }
+
+    //iterowanie
+    for (auto pair : MAP)
+    {
+        cout << pair.first << " " << pair.second << endl;
+    }
+
+    MAP.erase(123); //usuwanie Szymona
 
     //string str = "hello world";
     //cout << str << endl;
@@ -89,5 +102,4 @@ int main()
     //    }
     //}
     return 0;
-    
 }
