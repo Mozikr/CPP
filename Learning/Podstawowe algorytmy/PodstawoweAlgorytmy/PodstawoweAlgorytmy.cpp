@@ -48,7 +48,7 @@ void BubbleSort(vector<int>& tab)
     
 }
 
-void SelectionSort(vector<int>& tab)
+ void SelectionSort(vector<int>& tab)
 {
     for (int i = 0; i < tab.size(); ++i)
     {
