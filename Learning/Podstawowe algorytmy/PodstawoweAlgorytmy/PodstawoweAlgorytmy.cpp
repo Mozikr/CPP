@@ -48,6 +48,24 @@ void BubbleSort(vector<int>& tab)
     
 }
 
+void SelectionSort(vector<int>& tab)
+{
+    for (int i = 0; i < tab.size(); ++i)
+    {
+        int minIndex = i;
+        for (int j = i + 1; j < tab.size(); ++j)
+        {
+            if (tab[j] < tab[minIndex])
+            {
+                minIndex = j;
+
+            }
+        }
+        if(i != minIndex)
+            swap(tab[i], tab[minIndex]);
+    }
+}
+
 int main()
 {
     //vector<int> TAB = { 1,2,3,4,5,5,7,9,12,16,21,27,90 };
@@ -64,7 +82,7 @@ int main()
         TAB[i] = rand() % 100;
     }
 
-    BubbleSort(TAB);
+    SelectionSort(TAB);
 
     for (int i = 0; i < size; ++i)
     {
