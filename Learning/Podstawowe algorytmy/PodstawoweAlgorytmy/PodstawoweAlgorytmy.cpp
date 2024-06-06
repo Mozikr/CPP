@@ -30,16 +30,20 @@ int BinarySearch(const vector<int>& tab, int target, int right, int left = 0) //
 
 void BubbleSort(vector<int>& tab)
 {
+
     for (int j = 0; j < tab.size(); ++j) 
     {
-        for (int i = 0; i < tab.size()-1; ++i)
+        bool swapped = false;
+        for (int i = 0; i < tab.size()-1-j; ++i)
         {
             if (tab[i] > tab[i + 1])
             {
                 swap(tab[i], tab[i + 1]);
+                swapped = true;
             }
-
         }
+
+        if (!swapped) return;
     }
     
 }
