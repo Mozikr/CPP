@@ -6,51 +6,53 @@
 #include <cstdlib>
 #include <ctime>
 
+using namespace std;
+
 const int MAX_BUFFER_SIZE = 10;
-std::vector<int> buffer;
-std::mutex mtx;
-std::condition_variable cv;
+vector<int> buffer;
+mutex mtx;
+condition_variable cv;
 bool done = false;
 
 void producer() {
-    std::srand(std::time(nullptr)); // Initialize random number generator
+    srand(time(nullptr));
     while (true) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Simulate work
-        std::unique_lock<std::mutex> lock(mtx);
+        this_thread::sleep_for(chrono::milliseconds(100));
+        unique_lock<mutex> lock(mtx);
         cv.wait(lock, [] { return buffer.size() < MAX_BUFFER_SIZE; });
 
-        int num = std::rand() % 100; // Generate random number
+        int num = rand() % 100;
         buffer.push_back(num);
-        std::cout << "Produced: " << num << std::endl;
+        cout << "Produced: " << num << endl;
 
         cv.notify_all();
 
-        if (done) break; // Exit condition for demonstration purposes
+        if (done) break;
     }
 }
 
 void consumer() {
     while (true) {
-        std::unique_lock<std::mutex> lock(mtx);
+        unique_lock<mutex> lock(mtx);
         cv.wait(lock, [] { return !buffer.empty(); });
 
         int num = buffer.back();
         buffer.pop_back();
-        std::cout << "Consumed: " << num << std::endl;
+        cout << "Consumed: " << num << endl;
 
         cv.notify_all();
 
-        if (done && buffer.empty()) break; // Exit condition for demonstration purposes
+        if (done && buffer.empty()) break;
     }
 }
 
 int main() {
-    std::thread prod(producer);
-    std::thread cons(consumer);
+    thread prod(producer);
+    thread cons(consumer);
 
-    std::this_thread::sleep_for(std::chrono::seconds(5)); // Run for a certain time
+    this_thread::sleep_for(chrono::seconds(5));
     {
-        std::unique_lock<std::mutex> lock(mtx);
+        unique_lock<mutex> lock(mtx);
         done = true;
     }
     cv.notify_all();
