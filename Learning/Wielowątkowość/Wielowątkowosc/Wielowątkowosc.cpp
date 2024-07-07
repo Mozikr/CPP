@@ -1,20 +1,40 @@
-﻿// Wielowątkowosc.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
+﻿#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <map>
+#include <unordered_map>
+#include <algorithm>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <deque>
 
-#include <iostream>
+using namespace std;
+
+mutex mtx;
+
+void function()
+{
+    lock_guard<mutex> lock(mtx);
+    //mtx.lock(); //od teraz cały ten mutex jest dostępny tylko dla jednego wątku. Jak jeden wejdzie do funkcji to drugi czeka przed
+    for (int i = 0; i < 30; ++i) {
+        cout << "function is processing..., thread id: " <<this_thread::get_id()<<"process.." << endl;
+    }
+   //mtx.unlock();// tutaj konczy się mutex
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    thread t1(function);
+    thread t2(function);
+    
+    cout << thread::hardware_concurrency() << endl;
+
+    //cout << "main is processing" << endl;
+
+    t1.join();
+    t2.join();
+    return 0;
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
-
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
