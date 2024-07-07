@@ -14,27 +14,49 @@ using namespace std;
 
 mutex mtx;
 
-void function()
+void SharedPrint(string s)
 {
     lock_guard<mutex> lock(mtx);
-    //mtx.lock(); //od teraz cały ten mutex jest dostępny tylko dla jednego wątku. Jak jeden wejdzie do funkcji to drugi czeka przed
-    for (int i = 0; i < 30; ++i) {
-        cout << "function is processing..., thread id: " <<this_thread::get_id()<<"process.." << endl;
-    }
-   //mtx.unlock();// tutaj konczy się mutex
+    cout << s << endl;
 }
+
+void function()
+{ 
+    for (int i = 0; i < 30; ++i) {
+        SharedPrint("function is processing..., thread id: ");
+    }
+}
+
+class LogFile //klasa do odczytywania plikow
+{
+public:
+    LogFile()//kontruktor otwiera plik
+    {
+        file.open("log.txt");
+    }
+    ~LogFile()//destruktor zamyka plik
+    {
+        file.close();
+    }
+
+    void LogString(string log) 
+    {
+        lock_guard<mutex> lock(mtx);
+        file << log << endl;
+    }
+private:
+    ofstream file; //uchwyt na plik
+    mutex mtx;
+};
+
+
 
 int main()
 {
-    thread t1(function);
-    thread t2(function);
-    
-    cout << thread::hardware_concurrency() << endl;
+    LogFile logFile;
 
-    //cout << "main is processing" << endl;
+    logFile.LogString("main function call");
 
-    t1.join();
-    t2.join();
     return 0;
 }
 
